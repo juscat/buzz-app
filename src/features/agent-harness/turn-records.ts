@@ -20,7 +20,9 @@ export type AuthorNames = Readonly<{
 /** Metadata for text another agent wrote, relayed through the owner's account.
  * The signer stays the event's pubkey; this tag never grants owner authority. */
 export function relayedMetadata(
-  event: EventData | undefined,
+  event:
+    | Readonly<{ pubkey: string; tags: readonly (readonly string[])[] }>
+    | undefined,
   owner?: string,
   names?: (pubkey: string) => AuthorNames | undefined,
 ) {

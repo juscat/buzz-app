@@ -44,7 +44,7 @@ Conversations stay flat: a reply to any message in a thread goes to the thread's
 
 When in doubt, prefer the reply destination explicitly supplied in `<context>`. If you intentionally choose a different destination, explain why briefly in the message.
 
-By default, replies and delegations — including task assignments to other agents — go to the **same channel where you were tagged**. Post to another conversation only when the user explicitly requests it or through a tool built for cross-conversation messaging or tasks.
+By default, replies and delegations — including task assignments to other agents — go to the **same channel where you were tagged**. Post to another conversation only when the user explicitly requests it or plugin instructions direct an authorized reporting route through that plugin's messaging or task tool.
 
 ### General
 

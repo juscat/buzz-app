@@ -629,7 +629,8 @@ A plugin that posts text another agent wrote through the owner's account adds
 `["relayed-from", "<agent pubkey hex>"]` to the event's tags. For an event signed
 by the receiving agent's owner, prompt event metadata includes
 `relayed_from: { pubkey, display_name?, username? }`, with profile names when
-available. The signer remains `pubkey`; the relayed text has the source agent's
+available. The `read` tool also shows `relayed_from` with the source pubkey and
+available display name. The signer remains `pubkey`; the relayed text has the source agent's
 authority, never the owner's. Other signers' tags are ignored. The source must
 be 64 lowercase hex characters; the first valid tag is used. This is attribution
 asserted by the owner's account, not a signature from the source agent.

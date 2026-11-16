@@ -105,6 +105,14 @@ it.each([
       canvas: "Instructions",
     };
     expect(readWorkspace(saved)).toEqual(workspace);
+    const body = "x".repeat(
+      LIVE_CANVAS_BYTES - saved.length + workspace.canvas.length,
+    );
+    const full = saved.slice(0, -workspace.canvas.length) + body;
+    expect(readWorkspace(full)).toEqual({ ...workspace, canvas: body });
+    expect(() => workspaceCanvas({ ...workspace, canvas: body })).toThrow(
+      LIVE_CANVAS_LIMIT,
+    );
     // Saved again, it gets the current rule.
     expect(workspaceCanvas(workspace)).toContain(
       "For follow-up work on an existing branch or PR, reuse its worktree",
