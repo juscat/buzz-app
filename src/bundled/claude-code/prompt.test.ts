@@ -221,6 +221,10 @@ it("points a conversation in its own folder to the agent's workspace", () => {
   expect(own).toContain(
     "These paths are relative to your workspace — start there for your own files rather than scanning `$HOME` or `/`. Keep them there; do not create them in your working directory.",
   );
+  expect(own).toContain(
+    "Work in this conversation's own folder or the chat's explicit project folders",
+  );
+  expect(own).toContain("not the conversation's folder");
   expect(own).not.toContain("Your persistent workspace is in your working");
   expect(own).not.toContain("These paths are relative to your working");
   // Without a folder, the workspace is the working directory, as before.

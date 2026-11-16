@@ -66,6 +66,10 @@ it("names the agent's workspace for a thread in a conversation folder", () => {
     "Your persistent workspace is at `/home/me/.buzz`, not in your working directory",
   );
   expect(own).toContain("do not create them in your working directory");
+  expect(own).toContain(
+    "Work in this conversation's own folder or the chat's explicit project folders",
+  );
+  expect(own).toContain("reuse its worktree");
   expect(developerInstructions(agent)).toContain(
     "Your persistent workspace is in your working directory:",
   );

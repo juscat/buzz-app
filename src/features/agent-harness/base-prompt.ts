@@ -14,6 +14,14 @@ const OWN_FOLDER = [
     "Your persistent workspace is at `{workspace}`, not in your working directory, which is this conversation's own folder:",
   ],
   [
+    "Default source checkouts; `<community-repositories>` may replace this location. Use existing checkouts before cloning, and follow the working-location rules below",
+    "Source checkouts for other work; this conversation works in its own folder. `<community-repositories>` may replace this source-checkout location, not the conversation's folder",
+  ],
+  [
+    "When the working directory is assigned to this conversation, or the chat names project folders (in its workspace Canvas or referenced folders), work there and follow their rules; do not create another worktree unless those rules ask for one. Otherwise,",
+    "Work in this conversation's own folder or the chat's explicit project folders and follow their rules; do not create another worktree unless those rules ask for one. For other work,",
+  ],
+  [
     "See `AGENTS.md` in your working directory for full workspace conventions.",
     "See `AGENTS.md` in your workspace for full workspace conventions.",
   ],

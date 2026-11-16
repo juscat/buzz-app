@@ -102,9 +102,9 @@ export function repositoriesContext(partition: string | undefined) {
   // An unreadable configured preference must not silently direct work to another folder.
   const folder = readRepositoriesFolder(scope.communityOrigin, scope.viewer);
   if (!folder)
-    return "<community-repositories>\nUse REPOS in your own workspace for source checkouts. This restores the default and replaces any earlier community repositories folder. A chat’s explicit project folders take precedence.\n</community-repositories>";
+    return "<community-repositories>\nUse REPOS in your own workspace for source checkouts. This restores the default and replaces any earlier community repositories folder. A conversation’s assigned folder and a chat’s explicit project folders take precedence.\n</community-repositories>";
   const quoted = JSON.stringify(folder)
     .replaceAll("<", "\\u003c")
     .replaceAll(">", "\\u003e");
-  return `<community-repositories>\nThe repositories folder for this community on this device is ${quoted} (a literal path). Use existing source checkouts there before cloning. This replaces the REPOS/ source-checkout location in the workspace layout, not your own workspace for notes. A chat’s explicit project folders take precedence. Do not move files or repoint symlinks. This is a working location, not an access restriction.\n</community-repositories>`;
+  return `<community-repositories>\nThe repositories folder for this community on this device is ${quoted} (a literal path). Use existing source checkouts there before cloning. This replaces the REPOS/ source-checkout location in the workspace layout, not your own workspace for notes. A conversation’s assigned folder and a chat’s explicit project folders take precedence. Do not move files or repoint symlinks. This is a working location, not an access restriction.\n</community-repositories>`;
 }

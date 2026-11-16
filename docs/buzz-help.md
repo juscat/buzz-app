@@ -495,6 +495,9 @@ and are asked to sign in again in Buzz.
   lists agents eligible to run the task on this device.
   Without Nexus, chat creation remains available in the global **+** menu,
   Solo and each workspace; creating a workspace opens a chat draft filed there.
+  Agents use a conversation's assigned folder or the chat's project folders,
+  following their workspace rules. Follow-up work reuses the existing branch's
+  worktree. Plugins can show progress as task status instead of chat posts.
   Folders are optional unless **Work in a new worktree** is on. In that mode,
   add at least one project folder; the form shows a message beside Folders
   until you add one or turn worktree mode off. In **New chat**, typing **#**

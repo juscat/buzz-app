@@ -18,9 +18,12 @@ export type Workspace = {
 const prefix = "<!-- buzz-session-workspace:v1 ";
 const end = "<!-- /buzz-session-workspace -->";
 const worktreeRule =
-  "- Make code changes in that new worktree. A task that only reads code, or does not use a repository, usually does not need one.";
+  "- Make code changes in the chosen worktree. For follow-up work on an existing branch or PR, reuse its worktree instead of creating another. A task that only reads code, or does not use a repository, usually does not need one.";
 // What earlier versions wrote instead, which Canvases saved then still hold.
-const earlierWorktreeRule = "- Make all changes in that new worktree.";
+const earlierWorktreeRules = [
+  "- Make all changes in that new worktree.",
+  "- Make code changes in that new worktree. A task that only reads code, or does not use a repository, usually does not need one.",
+];
 export const emptyWorkspace = (): Workspace => ({ folders: [], canvas: "" });
 
 export function validateWorkspace(value: Workspace): Workspace {
@@ -73,7 +76,7 @@ export function workspaceCanvas(input: Workspace): string {
             `- Use \`${folder}\` for review only. Do not make changes directly in it.`,
         ),
         `- Before starting new work, fetch the latest \`${value.worktree.baseBranch}\` branch from origin.`,
-        `- For each repository that needs changes, create a new worktree under \`${value.worktree.location}\` from \`origin/${value.worktree.baseBranch}\`.`,
+        `- For each repository that needs a new worktree, create it under \`${value.worktree.location}\` from \`origin/${value.worktree.baseBranch}\`.`,
         worktreeRule,
       ]
     : [
@@ -102,7 +105,15 @@ export function readWorkspace(content: string): Workspace {
   // Never silently discard manually edited instructions inside the managed block.
   if (
     canvas !== content &&
-    canvas.replace(worktreeRule, earlierWorktreeRule) !== content
+    !earlierWorktreeRules.some(
+      (rule) =>
+        canvas
+          .replace(
+            "needs a new worktree, create it under",
+            "needs changes, create a new worktree under",
+          )
+          .replace(worktreeRule, rule) === content,
+    )
   )
     throw new Error(
       "Workspace instructions were edited in Canvas. Use the raw Canvas editor to preserve those changes.",
